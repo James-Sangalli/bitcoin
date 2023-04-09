@@ -66,8 +66,8 @@ public:
     static QString shortName(Unit unit);
     //! Longer description
     static QString description(Unit unit);
-    //! Number of Satoshis (1e-8) per unit
-    static qint64 factor(Unit unit);
+    //! Number of Satoshis (1e-18) per unit
+    static qint256 factor(Unit unit);
     //! Number of decimals left
     static int decimals(Unit unit);
     //! Format as string

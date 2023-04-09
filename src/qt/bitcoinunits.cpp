@@ -61,12 +61,12 @@ QString BitcoinUnits::description(Unit unit)
     assert(false);
 }
 
-qint64 BitcoinUnits::factor(Unit unit)
+qint256 BitcoinUnits::factor(Unit unit)
 {
     switch (unit) {
-    case Unit::BTC: return 100'000'000;
-    case Unit::mBTC: return 100'000;
-    case Unit::uBTC: return 100;
+    case Unit::BTC: return 1'000'000'000'000'000'000;
+    case Unit::mBTC: return 1'000'000'000'000'000;
+    case Unit::uBTC: return 1'000'000'000'000;
     case Unit::SAT: return 1;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -75,9 +75,9 @@ qint64 BitcoinUnits::factor(Unit unit)
 int BitcoinUnits::decimals(Unit unit)
 {
     switch (unit) {
-    case Unit::BTC: return 8;
-    case Unit::mBTC: return 5;
-    case Unit::uBTC: return 2;
+    case Unit::BTC: return 18;
+    case Unit::mBTC: return 15;
+    case Unit::uBTC: return 12;
     case Unit::SAT: return 0;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -88,7 +88,7 @@ QString BitcoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, Separato
     // Note: not using straight sprintf here because we do NOT want
     // localized number formatting.
     qint64 n = (qint64)nIn;
-    qint64 coin = factor(unit);
+    qint256 coin = factor(unit);
     int num_decimals = decimals(unit);
     qint64 n_abs = (n > 0 ? n : -n);
     qint64 quotient = n_abs / coin;
