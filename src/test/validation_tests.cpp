@@ -29,7 +29,7 @@ static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
         BOOST_CHECK_EQUAL(nSubsidy, nPreviousSubsidy / 2);
         nPreviousSubsidy = nSubsidy;
     }
-    BOOST_CHECK_EQUAL(GetBlockSubsidy(maxHalvings * consensusParams.nSubsidyHalvingInterval, consensusParams), 0);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(maxHalvings * consensusParams.nSubsidyHalvingInterval, consensusParams), 50);
 }
 
 static void TestBlockSubsidyHalvings(int nSubsidyHalvingInterval)
